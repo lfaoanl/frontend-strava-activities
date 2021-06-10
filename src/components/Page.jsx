@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Overview from '../views/Overview';
+import Profile from '../views/Profile';
 
 class Page extends Component {
   static get propTypes() {
@@ -11,8 +12,8 @@ class Page extends Component {
 
   getViewComponent() {
     const { view } = this.props;
-    if (view === 'kaas') {
-      return <div />;
+    if (view === 'profile') {
+      return <Profile />;
     }
     return <Overview />;
   }

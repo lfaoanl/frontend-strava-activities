@@ -1,0 +1,11 @@
+.profile-container {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  column-gap: 14px;
+}
+
+.profile-stats {
+  padding: 0 2em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

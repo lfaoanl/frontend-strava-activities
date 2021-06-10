@@ -35,9 +35,7 @@ class Header extends React.Component {
         { profile
         && (
         <div onClick={() => onNavigate('profile')} className="picture-container">
-          <ProfilePicture
-            source="https://static8.depositphotos.com/1028979/1058/i/600/depositphotos_10580868-stock-photo-handsome-smiling-man-isolated-over.jpg"
-          />
+          <ProfilePicture />
         </div>
         )}
       </header>
