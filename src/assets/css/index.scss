@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@700&display=swap");
+
+@import "common";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  color: $black;
+  margin-top: 96px;
+}
+
+main {
+  padding: 0 20px;
+}
+
+section {
+  margin-bottom: 26px;
+
+  &.small {
+    margin-bottom: 14px;
+  }
+}
+
+.m-0 {
+  margin: 0;
+}
+
+h1, h2 { /* Titles (h1 is white) */
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Tahoma, 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-size: 27px;
+  display: inline;
+  color: $white;
+}
+
+h3 { /* Numbers */
+  font-family: 'Bebas Neue', cursive;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+h4, time, label span.label { /* Subtitles */
+  font-family: 'Segoe UI', 'Open Sans', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $gray;
+
+  &:not(time) {
+    margin: 26px 0 14px 0;
+  }
+}
