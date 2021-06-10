@@ -64,6 +64,10 @@
 .icon-rabbit:before { content: '\e806'; } /* '' */
 .icon-track:before { content: '\e807'; } /* '' */
 .icon-calendar:before { content: '\e808'; } /* '' */
+.icon-scale-balance:before { content: '\e809'; } /* '' */
+.icon-minus-circle:before { content: '\e80a'; } /* '' */
+.icon-plus-circle:before { content: '\e80b'; } /* '' */
+.icon-plus:before { content: '\e80c'; } /* '' */
 
 .icon-small { font-size: 18px; }
 .icon-normal { font-size: 32px; }

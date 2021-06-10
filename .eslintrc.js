@@ -19,5 +19,8 @@ module.exports = {
   ],
   rules: {
     'react/prefer-stateless-function': [0],
+    'react/static-property-placement': [0],
+    'jsx-a11y/no-static-element-interactions': [0],
+    'jsx-a11y/click-events-have-key-events': [0],
   },
 };

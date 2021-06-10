@@ -1,0 +1,9 @@
+@import "common";
+
+.profile-picture {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid $gray;
+  overflow: hidden;
+}

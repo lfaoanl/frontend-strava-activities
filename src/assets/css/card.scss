@@ -1,0 +1,12 @@
+@import 'common';
+
+.card {
+  padding: 10px;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  position: relative;
+
+  &.half {
+    width: 50%;
+  }
+}

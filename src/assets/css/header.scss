@@ -1,0 +1,18 @@
+@import "common";
+
+header {
+  z-index: 10;
+  position: fixed;
+  background: $orange;
+  width: 100vw;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 20px;
+  box-shadow: $shadow;
+  top: 0;
+
+  .picture-container {
+    float: right;
+    padding-top: 11px;
+  }
+}

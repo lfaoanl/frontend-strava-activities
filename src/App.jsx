@@ -1,28 +1,67 @@
 import React from 'react';
-import logo from './assets/logo.svg';
-import './css/App.css';
+import Header from './components/Header';
+import ButtonCompare from './components/ButtonCompare';
+import Page from './components/Page';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'overview',
+      showButton: {
+        compare: true,
+        profile: true,
+        overview: false,
+      },
+    };
+
+    this.handleNavigate = this.handleNavigate.bind(this);
+  }
+
+  handleNavigate(view) {
+    const state = {
+      view,
+      showButton: {
+        compare: view !== 'compare',
+        profile: view !== 'profile',
+        overview: view !== 'overview',
+      },
+    };
+    this.setState(state);
+  }
+
+  get title() {
+    const { view } = this.state;
+    switch (view) {
+      case 'compare':
+        return 'Compare List';
+      case 'profile':
+        return 'My Profile';
+      case 'activity':
+        return 'Activity';
+      default:
+        return 'Overview';
+    }
+  }
+
+  render() {
+    const { showButton, view } = this.state;
+    return (
+      <>
+        <Header
+          back={showButton.overview}
+          profile={showButton.profile}
+          title={this.title}
+          onNavigate={this.handleNavigate}
+        />
+
+        <Page view={view} />
+
+        {showButton.compare
+        && <ButtonCompare onClick={() => this.handleNavigate('compare')} />}
+      </>
+    );
+  }
 }
 
 export default App;

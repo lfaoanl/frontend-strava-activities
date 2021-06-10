@@ -1,0 +1,14 @@
+@import 'common';
+
+.button-compare {
+  position: absolute;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  background: $orange;
+  right: 5px;
+  bottom: 5px;
+  box-shadow: $shadow;
+  z-index: 10;
+}

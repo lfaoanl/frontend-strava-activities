@@ -6,6 +6,8 @@ import './assets/css/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+window.primaryColor = '#fc4c02';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

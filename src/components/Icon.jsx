@@ -1,27 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/* eslint-disable react/no-unused-state */
 class Icon extends React.Component {
+  static get propTypes() {
+    return {
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string,
+      size: PropTypes.oneOf(['small', 'normal', 'large']),
+      className: PropTypes.string,
+      onClick: PropTypes.func,
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      size: 'normal',
+      color: '#2e2e2e',
+      className: '',
+      onClick: () => {},
+    };
+  }
+
   render() {
-    const { name, size, color } = this.props;
-    const iconClass = `icon-${name} icon-${size}`;
+    const {
+      name, size, color, className, onClick,
+    } = this.props;
+    let iconClass = `icon icon-${name} icon-${size}`;
     const style = { color };
+
+    if (className !== '') {
+      iconClass += ` ${className}`;
+    }
+
     return (
-      <span className={iconClass} style={style} />
+      <span onClick={onClick} className={iconClass} style={style} />
     );
   }
 }
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'normal', 'large']),
-};
-
-Icon.defaultProps = {
-  size: 'normal',
-  color: '#2e2e2e',
-};
 
 export default Icon;

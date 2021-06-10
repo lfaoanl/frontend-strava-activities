@@ -1,0 +1,60 @@
+@import 'common';
+
+.input {
+  height: 48px;
+  border: 1px solid $black;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  overflow: hidden;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  position: relative;
+
+  .label {
+    display: block;
+    margin: 0;
+    margin-top: 5px;
+  }
+
+  input, select{
+    outline-width: 0;
+    font-size: 17px;
+    border: none;
+    background: white;
+
+    &:not([type=date]) {
+    }
+
+    &[type=date] {
+      width: calc(100% - 18px - .4em);
+      margin-left: calc(18px + .4em);
+      padding: 0;
+      position: relative;
+      bottom: 5px;
+    }
+  }
+
+  select {
+    width: 100%;
+  }
+
+
+  .left {
+    float: left;
+    position: relative;
+    top: 10px;
+  }
+
+  .right {
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+
+    .icon {
+      position: relative;
+      top: -16px;
+      right: -12px;
+    }
+  }
+}
