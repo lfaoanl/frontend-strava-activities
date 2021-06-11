@@ -4,7 +4,7 @@
   height: 48px;
   border: 1px solid $black;
   border-radius: $radius;
-  box-shadow: $shadow;
+  box-shadow: $shadow-small;
   overflow: hidden;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -21,6 +21,9 @@
     font-size: 17px;
     border: none;
     background: white;
+    width: 100%;
+    padding-right: 48px;
+    bottom: 5px;
 
     &:not([type=date]) {
     }
@@ -50,10 +53,10 @@
     font-weight: bold;
     position: absolute;
     right: 10px;
+    bottom: 5px;
 
     .icon {
       position: relative;
-      top: -16px;
       right: -12px;
     }
   }

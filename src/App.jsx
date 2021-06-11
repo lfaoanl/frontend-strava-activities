@@ -22,7 +22,7 @@ class App extends React.Component {
     const state = {
       view,
       showButton: {
-        compare: view !== 'compare',
+        compare: view !== 'compare' && view !== 'profile',
         profile: view !== 'profile',
         overview: view !== 'overview',
       },

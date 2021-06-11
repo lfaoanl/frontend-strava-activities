@@ -1,36 +1,53 @@
 @import 'common';
 
+@mixin button-active {
+  border-color: $orange;
+  background: $orange;
+  color: $white;
+}
+
+@mixin button-basic {
+  border-color: #DBDBDB;
+  background: $white;
+  color: $black;
+}
+
 .button-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 input[type=radio] {
-    visibility: hidden;
-    display: none;
+  visibility: hidden;
+  display: none;
 
-    &:checked + .button {
-        border-color: $orange;
-        background: $orange;
-    }
+  &:checked + .button {
+    @include button-active();
+  }
 }
 
 .button {
-    background: $white;
-    border: 1px solid #DBDBDB;
-    color: $black;
-    font-family: 'Segoe UI', 'Open Sans', sans-serif;
-    font-size: 17px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 4px;
-    box-shadow: $shadow;
-    width: 100%;
-    height: 48px;
+  border: 1px solid #DBDBDB;
+  font-family: 'Segoe UI', 'Open Sans', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: $shadow-small;
+  width: 100%;
+  height: 46px;
 
-    &.active {
-        border-color: $orange;
-        background: $orange;
+  text-align: center;
+  line-height: 48px;
+
+  &:not(.radio) {
+    &:not(.primary), &.primary:active {
+      @include button-basic();
     }
+
+    &.primary, &:active:not(.primary) {
+      @include button-active();
+    }
+  }
 }
