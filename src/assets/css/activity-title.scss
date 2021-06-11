@@ -1,6 +1,11 @@
-.add-to-compare-list {
-  $padding: 7px;
-  position: absolute;
-  top: $padding;
-  right: $padding;
+.activity-title {
+  position: relative;
+
+  .add-to-compare-list {
+    $padding: 7px;
+    position: absolute;
+    top: $padding;
+    right: $padding;
+  }
+
 }

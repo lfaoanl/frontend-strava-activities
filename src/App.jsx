@@ -10,12 +10,11 @@ class App extends React.Component {
     this.handleNavigate = this.handleNavigate.bind(this);
     window.onhashchange = () => Router.handleUrlChange(this.handleNavigate);
 
+    const route = Router.parseRoute();
     this.state = {
-      route: Router.defaultRoute,
-      showButton: App.getMenuVisibility('overview'),
+      route,
+      showButton: App.getMenuVisibility(route.name),
     };
-
-    Router.handleUrlChange(this.handleNavigate);
   }
 
   handleNavigate(route) {

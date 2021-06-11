@@ -22,11 +22,14 @@ class Statistic extends Component {
 
   render() {
     const { label, value, centered } = this.props;
-    const className = `statistic ${centered && 'centered'}`;
+    let className = 'statistic';
+    if (centered) {
+      className += ' centered';
+    }
 
     return (
       <div className={className}>
-        <h4 className="m-0">{label}</h4>
+        { label ? <h4 className="m-0">{label}</h4> : <div className="statistic-title-placeholder" /> }
         <h3 className="m-0">{value}</h3>
       </div>
     );

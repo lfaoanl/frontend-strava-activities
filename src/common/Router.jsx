@@ -72,6 +72,7 @@ class Router {
       if (segments[1] !== location[1]) {
         return false;
       }
+
       return segments.slice(2).length === dataValues.length;
     });
     if (found[0]) {
@@ -94,7 +95,8 @@ class Router {
     const dataKeys = route.url.split('/').slice(2);
     urlData = {};
     forEach(values, (value, i) => {
-      urlData[dataKeys[i]] = value;
+      const dataKey = dataKeys[i].substr(1, dataKeys[i].length - 2);
+      urlData[dataKey] = value;
     });
   }
 
