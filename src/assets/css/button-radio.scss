@@ -36,10 +36,17 @@ input[type=radio] {
   border-radius: 4px;
   box-shadow: $shadow-small;
   width: 100%;
-  height: 46px;
+  height: 48px;
+  line-height: 46px;
+  position: relative;
+  text-align: left;
 
-  text-align: center;
-  line-height: 48px;
+  .label {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
 
   &:not(.radio) {
     &:not(.primary), &.primary:active {
@@ -49,5 +56,10 @@ input[type=radio] {
     &.primary, &:active:not(.primary) {
       @include button-active();
     }
+  }
+
+  .icon {
+    bottom: 2px;
+    position: relative;
   }
 }

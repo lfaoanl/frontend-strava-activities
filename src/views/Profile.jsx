@@ -53,7 +53,7 @@ class Profile extends Component {
           <h4 className="m-14">Weight</h4>
           <div className="button-group">
             <WeightInput name="weight" label="weight" value="72" />
-            <ButtonInput primary />
+            <ButtonInput label="Save" primary />
           </div>
         </section>
 

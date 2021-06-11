@@ -31,6 +31,8 @@
 <glyph glyph-name="plus-circle" unicode="&#xe80b;" d="M708 308h-166v-166h-84v166h-166v84h166v166h84v-166h166m-208 375c-230 0-417-187-417-417 0-230 187-417 417-417 230 0 417 187 417 417 0 230-187 417-417 417z" horiz-adv-x="1000" />
 
 <glyph glyph-name="plus" unicode="&#xe80c;" d="M792 308h-250v-250h-84v250h-250v84h250v250h84v-250h250v-84z" horiz-adv-x="1000" />
+
+<glyph glyph-name="arrow-right" unicode="&#xe80d;" d="M167 392v-84h500l-229-229 59-59 330 330-330 330-59-59 229-229h-500z" horiz-adv-x="1000" />
 </font>
 </defs>
 </svg>

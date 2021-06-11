@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;700&display=swap");
 
 @import "common";
 
@@ -11,11 +11,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
   color: $black;
-  margin-top: 96px;
 }
 
-main {
+main:not(.login) {
   padding: 0 20px;
+  margin-top: 96px;
 }
 
 section {

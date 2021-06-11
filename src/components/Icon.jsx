@@ -17,7 +17,7 @@ class Icon extends React.Component {
     return {
       right: false,
       size: 'normal',
-      color: '#2e2e2e',
+      color: '',
       onClick: () => {},
     };
   }
@@ -27,7 +27,11 @@ class Icon extends React.Component {
       name, size, color, right, onClick,
     } = this.props;
     let iconClass = `icon icon-${name} icon-${size}`;
-    const style = { color };
+    const style = { };
+
+    if (color) {
+      style.color = color;
+    }
 
     if (right) {
       iconClass += ' right';

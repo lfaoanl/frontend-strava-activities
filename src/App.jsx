@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import ButtonCompare from './components/ButtonCompare';
 import Router from './common/Router';
+import Login from './views/Login';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +41,10 @@ class App extends React.Component {
 
   render() {
     const { showButton, route } = this.state;
+    const login = true;
+    if (login) {
+      return (<Login />);
+    }
     return (
       <>
         <Header
