@@ -1,0 +1,15 @@
+@import "common";
+
+.compare-title-container {
+  height: 32px;
+  line-height: 32px;
+}
+
+.compare-lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  .compare-card-empty {
+    text-align: center;
+  }
+}

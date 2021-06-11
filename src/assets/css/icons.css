@@ -72,3 +72,7 @@
 .icon-small { font-size: 18px; }
 .icon-normal { font-size: 32px; }
 .icon-large { font-size: 48px; }
+
+.icon.right {
+    float: right;
+}

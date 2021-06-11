@@ -7,29 +7,30 @@ class Icon extends React.Component {
       name: PropTypes.string.isRequired,
       color: PropTypes.string,
       size: PropTypes.oneOf(['small', 'normal', 'large']),
-      className: PropTypes.string,
+      // className: PropTypes.string,
+      right: PropTypes.bool,
       onClick: PropTypes.func,
     };
   }
 
   static get defaultProps() {
     return {
+      right: false,
       size: 'normal',
       color: '#2e2e2e',
-      className: '',
       onClick: () => {},
     };
   }
 
   render() {
     const {
-      name, size, color, className, onClick,
+      name, size, color, right, onClick,
     } = this.props;
     let iconClass = `icon icon-${name} icon-${size}`;
     const style = { color };
 
-    if (className !== '') {
-      iconClass += ` ${className}`;
+    if (right) {
+      iconClass += ' right';
     }
 
     return (

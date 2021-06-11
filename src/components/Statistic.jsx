@@ -5,6 +5,7 @@ class Statistic extends Component {
   static get propTypes() {
     return {
       centered: PropTypes.bool,
+      placeholder: PropTypes.bool,
       label: PropTypes.string,
       value: PropTypes.oneOfType([
         PropTypes.string,
@@ -15,13 +16,16 @@ class Statistic extends Component {
 
   static get defaultProps() {
     return {
+      placeholder: false,
       centered: false,
       label: '',
     };
   }
 
   render() {
-    const { label, value, centered } = this.props;
+    const {
+      label, value, centered, placeholder,
+    } = this.props;
     let className = 'statistic';
     if (centered) {
       className += ' centered';
@@ -29,7 +33,7 @@ class Statistic extends Component {
 
     return (
       <div className={className}>
-        { label ? <h4 className="m-0">{label}</h4> : <div className="statistic-title-placeholder" /> }
+        { label ? <h4 className="m-0">{label}</h4> : placeholder && <div className="statistic-title-placeholder" /> }
         <h3 className="m-0">{value}</h3>
       </div>
     );

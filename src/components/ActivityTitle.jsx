@@ -6,7 +6,7 @@ class ActivityTitle extends Component {
   render() {
     return (
       <div className="activity-title">
-        <Icon name="plus" color={window.primaryColor} size="small" className="add-to-compare-list" />
+        <Icon name="plus" color={window.primaryColor} size="small" right />
         <h2>Sunday Afternoon Run</h2>
         <time>21/07/2021</time>
       </div>

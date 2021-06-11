@@ -1,0 +1,21 @@
+@import 'common';
+
+.compare-card {
+  padding: 5px;
+  .compare-card-header {
+    margin-bottom: 26px;
+
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  .stats-list {
+    display: grid;
+    row-gap: 14px;
+  }
+
+  .icon-container {
+    text-align: center;
+  }
+}

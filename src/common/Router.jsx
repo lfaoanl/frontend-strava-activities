@@ -5,6 +5,7 @@ import forEach from 'lodash/forEach';
 import Overview from '../views/Overview';
 import Profile from '../views/Profile';
 import Activity from '../views/Activity';
+import CompareList from '../views/CompareList';
 
 let currentRoute = '';
 let urlData = {};
@@ -28,7 +29,12 @@ const routes = [
     view: <Activity />,
     title: 'Activity',
   },
-
+  {
+    name: 'compare',
+    url: '#/compare',
+    view: <CompareList />,
+    title: 'Compare List',
+  },
 ];
 
 class Router {
