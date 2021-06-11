@@ -25,9 +25,6 @@
     padding-right: 48px;
     bottom: 5px;
 
-    &:not([type=date]) {
-    }
-
     &[type=date] {
       width: calc(100% - 18px - .4em);
       margin-left: calc(18px + .4em);
