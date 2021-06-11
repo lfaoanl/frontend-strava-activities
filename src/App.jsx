@@ -6,28 +6,43 @@ import Page from './components/Page';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const viewFromHash = this.getViewFromHash();
     this.state = {
-      view: 'overview',
-      showButton: {
-        compare: true,
-        profile: true,
-        overview: false,
-      },
+      view: viewFromHash,
+      showButton: App.getMenuVisibility(viewFromHash),
     };
 
     this.handleNavigate = this.handleNavigate.bind(this);
+    window.onhashchange = this.handleUrlChange.bind(this);
+  }
+
+  handleUrlChange() {
+    const view = this.getViewFromHash();
+    this.handleNavigate(view);
   }
 
   handleNavigate(view) {
     const state = {
       view,
-      showButton: {
-        compare: view !== 'compare' && view !== 'profile',
-        profile: view !== 'profile',
-        overview: view !== 'overview',
-      },
+      urlData: [],
+      showButton: App.getMenuVisibility(view),
     };
     this.setState(state);
+    window.location.hash = `#/${view}`;
+  }
+
+  static getMenuVisibility(view) {
+    return {
+      compare: view !== 'compare' && view !== 'profile',
+      profile: view !== 'profile',
+      overview: view !== 'overview',
+    };
+  }
+
+  getViewFromHash() {
+    const split = window.location.hash.split('/');
+    this.setState({ urlData: split.slice(2) });
+    return split[1];
   }
 
   get title() {
@@ -45,7 +60,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { showButton, view } = this.state;
+    const { showButton, view, urlData } = this.state;
     return (
       <>
         <Header
@@ -55,7 +70,7 @@ class App extends React.Component {
           onNavigate={this.handleNavigate}
         />
 
-        <Page view={view} />
+        <Page view={view} urlData={urlData} />
 
         {showButton.compare
         && <ButtonCompare onClick={() => this.handleNavigate('compare')} />}
