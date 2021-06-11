@@ -1,34 +1,29 @@
 import React from 'react';
 import Header from './components/Header';
 import ButtonCompare from './components/ButtonCompare';
-import Page from './components/Page';
+import Router from './common/Router';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const viewFromHash = this.getViewFromHash();
-    this.state = {
-      view: viewFromHash,
-      showButton: App.getMenuVisibility(viewFromHash),
-    };
 
     this.handleNavigate = this.handleNavigate.bind(this);
-    window.onhashchange = this.handleUrlChange.bind(this);
+    window.onhashchange = () => Router.handleUrlChange(this.handleNavigate);
+
+    this.state = {
+      route: Router.defaultRoute,
+      showButton: App.getMenuVisibility('overview'),
+    };
+
+    Router.handleUrlChange(this.handleNavigate);
   }
 
-  handleUrlChange() {
-    const view = this.getViewFromHash();
-    this.handleNavigate(view);
-  }
-
-  handleNavigate(view) {
+  handleNavigate(route) {
     const state = {
-      view,
-      urlData: [],
-      showButton: App.getMenuVisibility(view),
+      route,
+      showButton: App.getMenuVisibility(route.name),
     };
     this.setState(state);
-    window.location.hash = `#/${view}`;
   }
 
   static getMenuVisibility(view) {
@@ -39,41 +34,25 @@ class App extends React.Component {
     };
   }
 
-  getViewFromHash() {
-    const split = window.location.hash.split('/');
-    this.setState({ urlData: split.slice(2) });
-    return split[1];
-  }
-
   get title() {
-    const { view } = this.state;
-    switch (view) {
-      case 'compare':
-        return 'Compare List';
-      case 'profile':
-        return 'My Profile';
-      case 'activity':
-        return 'Activity';
-      default:
-        return 'Overview';
-    }
+    const { route } = this.state;
+    return route.title;
   }
 
   render() {
-    const { showButton, view, urlData } = this.state;
+    const { showButton, route } = this.state;
     return (
       <>
         <Header
           back={showButton.overview}
           profile={showButton.profile}
-          title={this.title}
-          onNavigate={this.handleNavigate}
+          title={route.title}
         />
 
-        <Page view={view} urlData={urlData} />
+        { Router.getView(route.name) }
 
         {showButton.compare
-        && <ButtonCompare onClick={() => this.handleNavigate('compare')} />}
+        && <ButtonCompare />}
       </>
     );
   }

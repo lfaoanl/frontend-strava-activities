@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Router from '../common/Router';
 import Icon from './Icon';
 import '../assets/css/button-compare.scss';
 
 class ButtonCompare extends Component {
-  static get propTypes() {
-    return {
-      onClick: PropTypes.func.isRequired,
-    };
-  }
-
   render() {
-    const { onClick } = this.props;
     return (
-      <div className="button-compare" onClick={onClick}>
+      <a href={Router.getUrl('compare')} className="button-compare">
         <Icon name="scale-balance" size="large" color="white" />
-      </div>
+      </a>
     );
   }
 }

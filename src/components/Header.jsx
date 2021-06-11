@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 import ProfilePicture from './ProfilePicture';
 import '../assets/css/header.scss';
+import Router from '../common/Router';
 
 class Header extends React.Component {
   static get propTypes() {
     return {
-      onNavigate: PropTypes.func.isRequired,
       back: PropTypes.bool,
       profile: PropTypes.bool,
       title: PropTypes.string.isRequired,
@@ -23,20 +23,20 @@ class Header extends React.Component {
 
   render() {
     const {
-      title, back, profile, onNavigate,
+      title, back, profile,
     } = this.props;
     return (
       <header>
         <h1>
           { back
-          && <Icon onClick={() => onNavigate('overview')} name="chevron-left" color="white" />}
+          && <a href={Router.getUrl('overview')}><Icon name="chevron-left" color="white" /></a>}
           { title }
         </h1>
         { profile
         && (
-        <div onClick={() => onNavigate('profile')} className="picture-container">
+        <a href={Router.getUrl('profile')} className="picture-container">
           <ProfilePicture />
-        </div>
+        </a>
         )}
       </header>
     );
