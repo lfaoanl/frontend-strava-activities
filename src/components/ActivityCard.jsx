@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import Icon from './Icon';
 import StatisticIcon from './StatisticIcon';
+import ActivityTitle from './ActivityTitle';
 
 class ActivityCard extends Component {
   render() {
