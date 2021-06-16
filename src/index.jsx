@@ -4,9 +4,13 @@ import './assets/css/reset.css';
 import './assets/css/icons.css';
 import './assets/css/index.scss';
 import App from './App';
+import Session from './common/Session';
+import Strava from './common/Strava';
 import reportWebVitals from './reportWebVitals';
 
 window.primaryColor = '#fc4c02';
+window.$strava = new Strava();
+window.$session = new Session();
 
 ReactDOM.render(
   <React.StrictMode>
