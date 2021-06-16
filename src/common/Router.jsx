@@ -2,6 +2,7 @@ import React from 'react';
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
+import Login from '../views/Login';
 import Overview from '../views/Overview';
 import Profile from '../views/Profile';
 import Activity from '../views/Activity';
@@ -16,6 +17,13 @@ const routes = [
     view: <Overview />,
     title: 'Overview',
     home: true,
+  },
+  {
+    name: 'login',
+    url: '#/login',
+    view: <Login />,
+    title: 'Login',
+    guest: true,
   },
   {
     name: 'profile',
@@ -71,6 +79,9 @@ class Router {
   }
 
   static parseRoute() {
+    if (!window.$session.has('athlete')) {
+      return this.setRoute(this.guestRoute);
+    }
     const location = window.location.hash.split('/');
     const dataValues = location.slice(2);
     const found = filter(routes, (route) => {
@@ -87,8 +98,12 @@ class Router {
     return this.setRoute(Router.defaultRoute);
   }
 
+  static get guestRoute() {
+    return find(routes, { guest: true });
+  }
+
   static get defaultRoute() {
-    return find(routes, { home: true });
+    return find(routes, { guest: true });
   }
 
   static setRoute(route, dataValues = {}) {
