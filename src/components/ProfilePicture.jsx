@@ -11,9 +11,10 @@ class ProfilePicture extends Component {
   }
 
   static get defaultProps() {
+    const athlete = window.$session.get('athlete');
     return {
       large: false,
-      source: 'https://static8.depositphotos.com/1028979/1058/i/600/depositphotos_10580868-stock-photo-handsome-smiling-man-isolated-over.jpg',
+      source: athlete.profile,
     };
   }
 

@@ -68,6 +68,10 @@ class Strava {
 
     return valid;
   }
+
+  getAthlete() {
+    return this.api.get('/athlete');
+  }
 }
 
 export default Strava;

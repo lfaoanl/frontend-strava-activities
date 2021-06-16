@@ -5,7 +5,7 @@ import '../../assets/css/input.scss';
 class WeightInput extends Component {
   static get propTypes() {
     return {
-      value: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     };
   }
 

@@ -7,13 +7,16 @@ class ApiConnection {
   constructor(endpoint, version) {
     this.endpoint = endpoint;
     this.version = version;
-    this.auth = false;
     this.client = {};
     this.busy = false;
   }
 
+  get auth() {
+    return window.$session.has('token');
+  }
+
   get tokenData() {
-    if (!window.$session.has('token')) {
+    if (!this.auth) {
       return {};
     }
     return window.$session.get('token');
@@ -46,7 +49,7 @@ class ApiConnection {
     }
 
     if (type.toLowerCase() === 'get') {
-      config.url = `${url}?${ApiConnection.serializeUrl(data)}`;
+      config.url = `${config.url}?${ApiConnection.serializeUrl(data)}`;
     } else {
       config.data = data;
     }
@@ -91,7 +94,6 @@ class ApiConnection {
       // eslint-disable-next-line camelcase
       token_type, expires_at, refresh_token, access_token, athlete,
     } = await this.post('/oauth/token', data);
-    this.auth = true;
     this.tokenData = {
       token_type,
       expires_at,
