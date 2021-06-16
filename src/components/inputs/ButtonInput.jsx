@@ -9,7 +9,8 @@ class ButtonInput extends Component {
       label: PropTypes.string.isRequired,
       primary: PropTypes.bool,
       onClick: PropTypes.func,
-      icon: PropTypes.arrayOf(PropTypes.string, PropTypes.bool),
+      icon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+      link: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     };
   }
 
@@ -18,17 +19,29 @@ class ButtonInput extends Component {
       primary: false,
       icon: false,
       onClick: () => {},
+      link: false,
     };
   }
 
   render() {
     const {
-      label, primary, onClick, icon,
+      label, primary, onClick, icon, link,
     } = this.props;
-    return (
-      <button className={`button ${primary && 'primary'}`} type="button" onClick={onClick}>
+    const content = (
+      <>
         <span className="label">{label}</span>
         {icon && <Icon name={icon} right />}
+      </>
+    );
+
+    if (link) {
+      return (
+        <a href={link} className={`button ${primary && 'primary'}`}>{ content }</a>
+      );
+    }
+    return (
+      <button className={`button ${primary && 'primary'}`} type="button" onClick={onClick}>
+        {content}
       </button>
     );
   }
