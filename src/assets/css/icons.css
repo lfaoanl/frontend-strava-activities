@@ -69,6 +69,7 @@
 .icon-plus-circle:before { content: '\e80b'; } /* '' */
 .icon-plus:before { content: '\e80c'; } /* '' */
 .icon-arrow-right:before { content: '\e80d'; } /* '' */
+.icon-loading:before { content: '\e80e'; } /* '' */
 
 .icon-small { font-size: 18px; }
 .icon-normal { font-size: 32px; }

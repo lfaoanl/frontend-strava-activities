@@ -39,13 +39,23 @@ input[type=radio] {
   height: 48px;
   line-height: 46px;
   position: relative;
-  text-align: left;
+  text-align: center;
+
+  &:not(.radio) {
+    text-align: left;
+  }
 
   .label {
     position: absolute;
     text-align: center;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+
+    .icon-loading::before {
+      animation: $rotate;
+    }
   }
 
   &:not(.radio) {

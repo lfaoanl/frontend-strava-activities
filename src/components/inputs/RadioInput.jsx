@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 import '../../assets/css/button-radio.scss';
 
 class RadioInput extends Component {
@@ -8,31 +9,34 @@ class RadioInput extends Component {
       name: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       options: PropTypes.objectOf(PropTypes.string).isRequired,
+      value: PropTypes.string.isRequired,
+      onChange: PropTypes.func.isRequired,
     };
   }
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: this.getValue(),
-    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    const { value } = event.target;
+
+    const { onChange } = this.props;
+    onChange(value);
   }
 
   getValue() {
-    const { options } = this.props;
-    // TODO fetch current value from localstorage
-    return Object.keys(options)[0];
+    const { options, value } = this.props;
+
+    return find(options, { value });
   }
 
   render() {
-    const { value } = this.state;
-    const { name, label, options } = this.props;
+    const {
+      name, label, options, value,
+    } = this.props;
     const keys = Object.keys(options);
     return (
       <>

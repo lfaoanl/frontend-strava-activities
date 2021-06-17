@@ -1,8 +1,8 @@
 import React from 'react';
+import includes from 'lodash/includes';
 import Header from './components/Header';
 import ButtonCompare from './components/ButtonCompare';
 import Router from './common/Router';
-import Login from './views/Login';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,8 +14,18 @@ class App extends React.Component {
     const route = Router.parseRoute();
     this.state = {
       route,
+      athlete: null,
       showButton: App.getMenuVisibility(route.name),
     };
+
+    if (includes(window.location.search, 'code')) {
+      window.$strava.login().then((athlete) => {
+        this.state.athlete = athlete;
+        window.location.search = '';
+        Router.navigate('overview');
+        // TODO fadeOut login loader and handle urlchange
+      });
+    }
   }
 
   handleNavigate(route) {
@@ -28,7 +38,7 @@ class App extends React.Component {
 
   static getMenuVisibility(view) {
     return {
-      compare: view !== 'compare' && view !== 'profile',
+      compare: view !== 'compare' && view !== 'profile' && view !== 'login',
       profile: view !== 'profile',
       overview: view !== 'overview',
     };
@@ -40,18 +50,18 @@ class App extends React.Component {
   }
 
   render() {
-    const { showButton, route } = this.state;
-    const login = true;
-    if (login) {
-      return (<Login />);
-    }
+    const { showButton, route, athlete } = this.state;
+
     return (
       <>
+        { route.name !== 'login' && (
         <Header
+          athlete={athlete}
           back={showButton.overview}
           profile={showButton.profile}
           title={route.title}
         />
+        ) }
 
         { Router.getView(route.name) }
 

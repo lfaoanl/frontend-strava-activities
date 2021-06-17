@@ -10,7 +10,7 @@ class Login extends Component {
         <Card>
           <h1>Login</h1>
           <div className="button-container">
-            <ButtonInput label="Login with strava" primary icon="arrow-right" />
+            <ButtonInput label="Login with strava" primary icon="arrow-right" link={window.$strava.authenticateUrl} />
           </div>
         </Card>
       </main>
