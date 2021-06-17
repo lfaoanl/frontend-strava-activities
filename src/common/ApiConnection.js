@@ -34,7 +34,6 @@ class ApiConnection {
     this.busy = true;
     if (refresh && this.needsToRefresh()) {
       const token = this.tokenData.refresh_token;
-      console.log('needs to refresh', token);
       await this.tokenExchange(token, true);
     }
     const config = {

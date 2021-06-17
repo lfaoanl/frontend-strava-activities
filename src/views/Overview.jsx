@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../assets/css/page-overview.scss';
-import StatisticIcon from '../components/StatisticIcon';
 import ActivityCard from '../components/ActivityCard';
 import SelectInput from '../components/inputs/SelectInput';
 import DateInput from '../components/inputs/DateInput';
+import RecordCards from '../components/RecordCards';
 
 class Overview extends Component {
   render() {
@@ -11,12 +11,7 @@ class Overview extends Component {
       <main>
         <section>
           <h4>personal records</h4>
-          <div className="record-cards">
-            <StatisticIcon card />
-            <StatisticIcon card />
-            <StatisticIcon card />
-            <StatisticIcon card />
-          </div>
+          <RecordCards />
         </section>
 
         <section className="small">

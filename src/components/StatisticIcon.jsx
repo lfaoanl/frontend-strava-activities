@@ -8,6 +8,9 @@ class StatisticIcon extends Component {
     return {
       card: PropTypes.bool,
       centered: PropTypes.bool,
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      icon: PropTypes.string,
     };
   }
 
@@ -15,18 +18,23 @@ class StatisticIcon extends Component {
     return {
       card: false,
       centered: false,
+      title: '',
+      subtitle: '',
+      icon: 'rabbit',
     };
   }
 
   render() {
-    const { card, centered } = this.props;
+    const {
+      card, centered, title, subtitle, icon,
+    } = this.props;
     const className = `statistic ${(card || centered) && 'centered'}`;
     const size = card ? 'large' : 'normal';
     const template = (
       <div className={className}>
-        <Icon name="rabbit" size={size} />
-        <h3 className="m-0">12</h3>
-        <h4 className="m-0">km/h</h4>
+        <Icon name={icon} size={size} />
+        <h3 className="m-0">{title}</h3>
+        <h4 className="m-0">{subtitle}</h4>
       </div>
     );
 
