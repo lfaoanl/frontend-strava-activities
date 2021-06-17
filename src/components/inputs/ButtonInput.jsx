@@ -4,6 +4,11 @@ import '../../assets/css/button-radio.scss';
 import Icon from '../Icon';
 
 class ButtonInput extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   static get propTypes() {
     return {
       label: PropTypes.string.isRequired,
@@ -11,6 +16,7 @@ class ButtonInput extends Component {
       onClick: PropTypes.func,
       icon: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
       link: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+      loading: PropTypes.bool,
     };
   }
 
@@ -20,19 +26,37 @@ class ButtonInput extends Component {
       icon: false,
       onClick: () => {},
       link: false,
+      loading: false,
     };
+  }
+
+  handleClick() {
+    const { loading, onClick } = this.props;
+    if (!loading) {
+      onClick();
+    }
   }
 
   render() {
     const {
-      label, primary, onClick, icon, link,
+      label, primary, icon, link, loading,
     } = this.props;
-    const content = (
-      <>
-        <span className="label">{label}</span>
-        {icon && <Icon name={icon} right />}
-      </>
-    );
+    let content;
+
+    if (loading) {
+      content = (
+        <span className="label">
+          <Icon name="loading" />
+        </span>
+      );
+    } else {
+      content = (
+        <>
+          <span className="label">{label}</span>
+          {icon && <Icon name={icon} right />}
+        </>
+      );
+    }
 
     if (link) {
       return (
@@ -40,7 +64,7 @@ class ButtonInput extends Component {
       );
     }
     return (
-      <button className={`button ${primary && 'primary'}`} type="button" onClick={onClick}>
+      <button className={`button ${primary && 'primary'}`} type="button" onClick={() => this.handleClick()}>
         {content}
       </button>
     );

@@ -1,8 +1,10 @@
 import includes from 'lodash/includes';
+import merge from 'lodash/merge';
 
 class Session {
   constructor() {
     this.cached = {};
+    this.defaults = {};
   }
 
   has(prop) {
@@ -43,6 +45,11 @@ class Session {
 
   isCached(prop) {
     return includes(this.cached, prop);
+  }
+
+  update(prop, newValues) {
+    const oldValues = this.get(prop);
+    this.set(prop, merge(oldValues, newValues));
   }
 }
 

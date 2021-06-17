@@ -5,11 +5,11 @@ import ApiConnection from './ApiConnection';
 
 class Strava {
   constructor() {
-    this.api = new ApiConnection('https://www.strava.com/api/', 'v3');
     this.client = {
       id: process.env.REACT_APP_STRAVA_ID,
       secret: process.env.REACT_APP_STRAVA_SECRET,
     };
+    this.api = new ApiConnection(this.client, 'https://www.strava.com/api/', 'v3');
     this.scopes = [
       'read',
       'profile:read_all',
@@ -47,7 +47,7 @@ class Strava {
   }
 
   async login() {
-    const response = await this.api.tokenExchange(this.client, this.urlParameters.code);
+    const response = await this.api.tokenExchange(this.urlParameters.code);
 
     if (!this.validateScopes(this.urlParameters.scope)) {
       return false;
@@ -69,8 +69,18 @@ class Strava {
     return valid;
   }
 
-  getAthlete() {
-    return this.api.get('/athlete');
+  async getAthlete() {
+    const athlete = await this.api.get('/athlete');
+    const stats = await this.api.get(`/athletes/${athlete.id}/stats`);
+
+    return {
+      athlete,
+      stats,
+    };
+  }
+
+  updateAthlete(settings) {
+    return this.api.put('/athlete', settings);
   }
 }
 

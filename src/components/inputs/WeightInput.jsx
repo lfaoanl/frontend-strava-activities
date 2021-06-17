@@ -6,29 +6,29 @@ class WeightInput extends Component {
   static get propTypes() {
     return {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      onInput: PropTypes.func.isRequired,
     };
   }
 
   constructor(props) {
     super(props);
-    this.state = {
-      _value: props.value,
-    };
 
     this.handleInput = this.handleInput.bind(this);
   }
 
   handleInput(event) {
-    this.setState({ _value: event.target.value });
+    const { onInput } = this.props;
+    const { value } = event.target;
+    onInput(value);
   }
 
   render() {
-    const { _value } = this.state;
+    const { value } = this.props;
     return (
       <div className="input">
         <label>
           <span className="label">weight</span>
-          <input type="number" pattern="[0-9]*" value={_value} onInput={this.handleInput} />
+          <input type="number" pattern="[0-9]*" value={value} onInput={this.handleInput} />
           <span className="right">KG</span>
         </label>
 

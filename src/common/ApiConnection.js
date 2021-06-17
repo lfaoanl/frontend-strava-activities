@@ -4,10 +4,10 @@ import axios from 'axios';
 import forEach from 'lodash/forEach';
 
 class ApiConnection {
-  constructor(endpoint, version) {
+  constructor(client, endpoint, version) {
     this.endpoint = endpoint;
     this.version = version;
-    this.client = {};
+    this.client = client;
     this.busy = false;
   }
 
@@ -30,11 +30,12 @@ class ApiConnection {
     return this.endpoint + this.version;
   }
 
-  async send(type, url, data) {
+  async send(type, url, data, refresh = true) {
     this.busy = true;
-    if (this.needsToRefresh()) {
-      console.log('needs to refresh');
-      await this.tokenExchange(this.client, this.auth, true);
+    if (refresh && this.needsToRefresh()) {
+      const token = this.tokenData.refresh_token;
+      console.log('needs to refresh', token);
+      await this.tokenExchange(token, true);
     }
     const config = {
       method: type,
@@ -60,12 +61,16 @@ class ApiConnection {
     return Promise.resolve(response.data);
   }
 
-  post(url, data) {
-    return this.send('post', url, data);
+  post(url, data, refresh = true) {
+    return this.send('post', url, data, refresh);
   }
 
   get(url, data) {
     return this.send('get', url, data);
+  }
+
+  put(url, data) {
+    return this.send('put', url, data);
   }
 
   static serializeUrl(obj) {
@@ -76,15 +81,14 @@ class ApiConnection {
     return str.join('&');
   }
 
-  async tokenExchange(client, token = '', refresh = false) {
-    this.client = {
-      client_id: client.id,
-      client_secret: client.secret,
+  async tokenExchange(token = '', refresh = false) {
+    const data = {
+      client_id: this.client.id,
+      client_secret: this.client.secret,
     };
-    const data = this.client;
     if (refresh) {
       data.grant_type = 'refresh_token';
-      data.token = this.tokenData.refresh_token;
+      data.refresh_token = this.tokenData.refresh_token;
     } else {
       data.grant_type = 'authorization_code';
       data.code = token;
@@ -93,7 +97,7 @@ class ApiConnection {
     const {
       // eslint-disable-next-line camelcase
       token_type, expires_at, refresh_token, access_token, athlete,
-    } = await this.post('/oauth/token', data);
+    } = await this.post('/oauth/token', data, false);
     this.tokenData = {
       token_type,
       expires_at,
