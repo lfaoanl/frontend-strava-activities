@@ -18,7 +18,7 @@ class Loading extends Component {
   render() {
     const { message } = this.props;
     return (
-      <main className="loading">
+      <div className="loading">
         <div className="lds-ring">
           <div />
           <div />
@@ -26,7 +26,7 @@ class Loading extends Component {
           <div />
         </div>
         <div className="message">{message}</div>
-      </main>
+      </div>
     );
   }
 }

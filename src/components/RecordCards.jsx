@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import forEach from 'lodash/forEach';
 import StatisticIcon from './StatisticIcon';
+import Loading from './Loading';
 
 class RecordCards extends React.Component {
   static get propTypes() {
@@ -13,10 +15,14 @@ class RecordCards extends React.Component {
     const cards = [];
     const { cards: cardsProp } = this.props;
 
-    for (let i = 0; i < cardsProp.length; i += 1) {
+    forEach(cardsProp, (card) => {
       cards.push(
-        <StatisticIcon card />,
+        <StatisticIcon card icon={card.icon} title={card.value} subtitle={card.unit} />,
       );
+    });
+
+    if (cards.length === 0) {
+      return (<Loading />);
     }
 
     return (

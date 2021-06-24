@@ -68,7 +68,11 @@ class Profile extends Component {
     } = this.state;
 
     if (loading) {
-      return (<Loading />);
+      return (
+        <main>
+          <Loading />
+        </main>
+      );
     }
 
     let icon;
