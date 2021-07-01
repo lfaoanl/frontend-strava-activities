@@ -24,5 +24,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': [0],
     'jsx-a11y/control-has-associated-label': [0],
     'jsx-a11y/label-has-associated-control': [0],
+    'no-underscore-dangle': [2, { allowAfterThis: true }],
   },
 };
