@@ -9,6 +9,10 @@
 }
 
 .activity-cards {
+  display: grid;
+  row-gap: 10px;
+  margin-bottom: 85px;
+
   date {
     top: -7px;
     position: relative;

@@ -59,3 +59,8 @@ input[type="date"]::-webkit-inner-spin-button {
 input[type="date"]::-webkit-clear-button {
     z-index: 1;
 }
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}

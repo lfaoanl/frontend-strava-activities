@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import '../assets/css/page-overview.scss';
-import ActivityCard from '../components/ActivityCard';
 import SelectInput from '../components/inputs/SelectInput';
 import DateInput from '../components/inputs/DateInput';
 import RecordCards from '../components/RecordCards';
+import ActivityList from '../components/ActivityList';
+import Activity from '../common/Activity';
 
 class Overview extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      activities: [],
       cards: [
         {
           icon: 'rabbit',
@@ -35,8 +37,15 @@ class Overview extends Component {
     };
   }
 
+  componentDidMount() {
+    Activity.fetchList((activities) => {
+      this.setState({ activities });
+      console.log(activities);
+    });
+  }
+
   render() {
-    const { cards } = this.state;
+    const { cards, activities } = this.state;
     return (
       <main>
         <section>
@@ -55,8 +64,8 @@ class Overview extends Component {
         </section>
 
         <section className="activity-cards">
-          <ActivityCard />
-          {/* <Activities activities={activities} /> */}
+          {/* <ActivityCard /> */}
+          <ActivityList activities={activities} />
         </section>
       </main>
     );

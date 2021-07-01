@@ -82,6 +82,11 @@ class Strava {
   updateAthlete(settings) {
     return this.api.put('/athlete', settings);
   }
+
+  getActivities() {
+    // TODO set perpage too 250
+    return this.api.get('/athlete/activities');
+  }
 }
 
 export default Strava;
