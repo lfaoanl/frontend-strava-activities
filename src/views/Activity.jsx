@@ -1,16 +1,53 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../assets/css/page-activity.scss';
 import ActivityTitle from '../components/ActivityTitle';
 import MapsCard from '../components/MapsCard';
 import Statistic from '../components/Statistic';
 import GraphCard from '../components/GraphCard';
+import Loading from '../components/Loading';
 
 class Activity extends Component {
+  static get propTypes() {
+    return {
+      id: PropTypes.string.isRequired,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      activity: null,
+    };
+  }
+
+  componentDidMount() {
+    const { id } = this.props;
+    if (id === 'none') {
+      return;
+    }
+    window.$strava.getActivity(id).then((activity) => {
+      this.setState({ activity, loading: false });
+    });
+  }
+
   render() {
+    const { activity, loading } = this.state;
+
+    if (loading) {
+      return (
+        <main>
+          <Loading message="Getting activity data" />
+        </main>
+      );
+    }
+
     return (
       <main>
         <section>
-          <ActivityTitle />
+          <ActivityTitle activity={activity} />
         </section>
 
         <section>
@@ -18,14 +55,13 @@ class Activity extends Component {
         </section>
 
         <section className="activity-stats">
-          <Statistic label="speed" value="12 km/h" />
-          <Statistic value="5 min/km" />
+          <Statistic label="speed" value={activity.getSpeed(false)} />
+          <Statistic label="pace" value={activity.getSpeed(true)} />
 
-          <Statistic label="distance" value="4 km" />
-          <Statistic label="duration" value="00:20:43" />
+          <Statistic label="distance" value={activity.getDistance()} />
+          <Statistic label="duration" value={activity.duration} />
 
-          <Statistic label="calories" value="72 kcal" />
-          <Statistic label="heartrate" value="87 bpm" />
+          <Statistic label="calories" value={activity.props.calories} />
         </section>
 
         <section>

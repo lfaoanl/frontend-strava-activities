@@ -34,7 +34,7 @@ const routes = [
   {
     name: 'activity',
     url: '#/activity/{id}',
-    view: <Activity />,
+    view: <Activity id="none" />,
     title: 'Activity',
   },
   {

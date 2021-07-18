@@ -9,19 +9,28 @@ function round(number) {
 }
 
 class Convert {
-  static distance(meters) {
-    return round(Settings.metric ? meters / 1000 : toMiles(meters));
+  static distance(meters, withSuffix) {
+    const calculated = round(Settings.metric ? meters / 1000 : toMiles(meters));
+    if (withSuffix) {
+      return `${calculated} ${this.distanceText()}`;
+    }
+    return calculated;
   }
 
-  static pace(metersPerSeconds) {
+  static pace(metersPerSeconds, withSuffix = false, usePace = Settings.pace) {
     const factor = Settings.metric ? 3.6 : 2.23693629;
     const speed = metersPerSeconds * factor;
 
-    if (Settings.pace) {
+    if (usePace) {
       return Convert.time((60 / speed), true);
     }
 
-    return round(speed);
+    const calculated = round(speed);
+
+    if (withSuffix) {
+      return `${calculated} ${this.speedText(usePace)}`;
+    }
+    return calculated;
   }
 
   static time(seconds, minutes = false) {
@@ -58,8 +67,8 @@ class Convert {
     return dateArray.join('/');
   }
 
-  static speedText() {
-    if (Settings.pace) {
+  static speedText(usePace = Settings.pace) {
+    if (usePace) {
       return `min/${Settings.metric ? 'km' : 'mile'}`;
     }
     return Settings.metric ? 'km/h' : 'mph';

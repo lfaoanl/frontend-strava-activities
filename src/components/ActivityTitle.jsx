@@ -18,6 +18,8 @@ class ActivityTitle extends Component {
         <Icon name="plus" color={window.primaryColor} size="small" right />
         <h2>{activity.name}</h2>
         <time>{activity.date}</time>
+        <br />
+        { !!activity.props.description && activity.props.description }
       </div>
     );
   }

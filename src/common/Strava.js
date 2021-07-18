@@ -2,6 +2,7 @@
 import forEach from 'lodash/forEach';
 import includes from 'lodash/includes';
 import ApiConnection from './ApiConnection';
+import Activity from './Activity';
 
 class Strava {
   constructor() {
@@ -86,6 +87,14 @@ class Strava {
   getActivities() {
     // TODO set perpage too 250
     return this.api.get('/athlete/activities');
+  }
+
+  getActivity(id) {
+    return new Promise((resolve) => {
+      this.api.get(`/activities/${id}`).then((fetched) => {
+        resolve(Activity.fromFetched(fetched));
+      });
+    });
   }
 }
 
