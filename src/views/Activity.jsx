@@ -51,7 +51,7 @@ class Activity extends Component {
         </section>
 
         <section>
-          <MapsCard />
+          <MapsCard polyline={activity.props.map.polyline} />
         </section>
 
         <section className="activity-stats">

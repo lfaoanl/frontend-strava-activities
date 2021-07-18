@@ -40,7 +40,6 @@ class Overview extends Component {
   componentDidMount() {
     Activity.fetchList((activities) => {
       this.setState({ activities });
-      console.log(activities);
     });
   }
 
