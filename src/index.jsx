@@ -11,10 +11,11 @@ import reportWebVitals from './reportWebVitals';
 window.primaryColor = '#fc4c02';
 window.$strava = new Strava();
 window.$session = new Session();
+window.$app = React.createRef();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App ref={window.$app} />
   </React.StrictMode>,
   document.getElementById('root'),
 );

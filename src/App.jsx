@@ -18,6 +18,8 @@ class App extends React.Component {
       showButton: App.getMenuVisibility(route.name),
     };
 
+    this.compare = React.createRef();
+
     if (includes(window.location.search, 'code')) {
       window.$strava.login().then((athlete) => {
         this.state.athlete = athlete;
@@ -66,7 +68,7 @@ class App extends React.Component {
         { Router.getView(route.name) }
 
         {showButton.compare
-        && <ButtonCompare />}
+        && <ButtonCompare ref={this.compare} />}
       </>
     );
   }

@@ -47,7 +47,7 @@ class Activity extends Component {
     return (
       <main>
         <section>
-          <ActivityTitle activity={activity} />
+          <ActivityTitle activity={activity} button />
         </section>
 
         <section>

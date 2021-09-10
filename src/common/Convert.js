@@ -59,12 +59,13 @@ class Convert {
   static date(utcString) {
     const date = new Date(utcString);
 
-    let dateArray = [date.getDate(), date.getMonth(), date.getFullYear()];
+    let dateArray = [date.getDate(), date.getMonth() + 1, date.getFullYear()];
     if (!Settings.metric) {
       // Sets to MM-DD-YYYY
       dateArray = [dateArray[1], dateArray[0], dateArray[2]];
     }
-    return dateArray.join('/');
+    const timeArray = [date.getHours().toString().padStart(2, '0'), date.getMinutes().toString().padStart(2, '0')];
+    return `${dateArray.join('/')} ${timeArray.join(':')}`;
   }
 
   static speedText(usePace = Settings.pace) {

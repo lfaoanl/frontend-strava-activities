@@ -11,4 +11,21 @@
   bottom: 5px;
   box-shadow: $shadow;
   z-index: 10;
+
+  .button-compare-count {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background: $orange;
+    right: 5px;
+    bottom: 5px;
+    box-shadow: $shadow;
+    z-index: 11;
+    font-weight: bold;
+    color: white;
+  }
 }

@@ -4,12 +4,12 @@ class Settings {
   }
 
   static get metric() {
-    const { units } = Settings.get();
+    const { units } = Settings.get() || {};
     return typeof units === 'undefined' || units === 'metric';
   }
 
   static get pace() {
-    const { speed } = Settings.get();
+    const { speed } = Settings.get() || {};
     return typeof speed === 'undefined' || speed === 'pace';
   }
 }

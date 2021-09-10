@@ -1,5 +1,6 @@
 import includes from 'lodash/includes';
 import merge from 'lodash/merge';
+import concat from 'lodash/concat';
 
 class Session {
   constructor() {
@@ -28,6 +29,7 @@ class Session {
       return this.cached[prop].item;
     }
     const item = JSON.parse(window.localStorage.getItem(prop));
+
     this.cached[prop] = {
       has: item !== null,
       item,
@@ -35,21 +37,31 @@ class Session {
     return item;
   }
 
-  set(prop, value) {
+  set(prop, value, updatable = false) {
     window.localStorage.setItem(prop, JSON.stringify(value));
     this.cached[prop] = {
       has: true,
       item: value,
     };
+    if (updatable) {
+      window.$app.current[prop].current.forceUpdate();
+    }
+    return value;
   }
 
   isCached(prop) {
     return includes(this.cached, prop);
   }
 
-  update(prop, newValues) {
+  update(prop, newValues, updatable = false) {
     const oldValues = this.get(prop);
-    this.set(prop, merge(oldValues, newValues));
+    let merged;
+    if (oldValues instanceof Array) {
+      merged = concat(oldValues, newValues);
+    } else {
+      merged = merge(oldValues, newValues);
+    }
+    return this.set(prop, merged, updatable);
   }
 }
 
