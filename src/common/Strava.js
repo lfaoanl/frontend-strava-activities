@@ -47,10 +47,15 @@ class Strava {
     return JSON.parse(urlObject);
   }
 
-  async login() {
-    const response = await this.api.tokenExchange(this.urlParameters.code);
+  async login(viaRefresh = false) {
+    let response;
+    if (viaRefresh) {
+      response = await this.api.get('/athlete');
+    } else {
+      response = await this.api.tokenExchange(this.urlParameters.code);
+    }
 
-    if (!this.validateScopes(this.urlParameters.scope)) {
+    if (!viaRefresh && !this.validateScopes(this.urlParameters.scope)) {
       return false;
     }
     this.athlete = response;

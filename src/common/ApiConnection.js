@@ -87,7 +87,7 @@ class ApiConnection {
     };
     if (refresh) {
       data.grant_type = 'refresh_token';
-      data.refresh_token = this.tokenData.refresh_token;
+      data.refresh_token = token;
     } else {
       data.grant_type = 'authorization_code';
       data.code = token;

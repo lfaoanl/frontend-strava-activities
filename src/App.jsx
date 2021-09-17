@@ -19,13 +19,18 @@ class App extends React.Component {
     };
 
     this.compare = React.createRef();
+  }
 
-    if (includes(window.location.search, 'code')) {
-      window.$strava.login().then((athlete) => {
-        this.state.athlete = athlete;
-        window.location.search = '';
-        Router.navigate('overview');
-        // TODO fadeOut login loader and handle urlchange
+  componentDidMount() {
+    const loginViaRefresh = window.$strava.api.auth && !window.$session.has('athlete');
+    if (includes(window.location.search, 'code')
+      || loginViaRefresh) {
+      window.$strava.login(window.$strava.api.auth).then((athlete) => {
+        this.setState({ athlete }, () => {
+          window.location.search = '';
+          Router.navigate('overview');
+          // TODO fadeOut login loader and handle urlChange
+        });
       });
     }
   }

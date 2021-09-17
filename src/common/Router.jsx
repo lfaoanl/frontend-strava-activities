@@ -64,7 +64,7 @@ class Router {
     const { url } = Router.getRoute(name) || this.defaultRoute;
     let parsed = url;
     forEach(params, (value, key) => {
-      parsed = parsed.replace(`{${key}`, value);
+      parsed = parsed.replace(`{${key}}`, value);
     });
     return parsed;
   }
@@ -103,7 +103,7 @@ class Router {
   }
 
   static get defaultRoute() {
-    return find(routes, { guest: true });
+    return find(routes, { home: true });
   }
 
   static setRoute(route, dataValues = {}) {
