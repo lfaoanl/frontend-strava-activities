@@ -40,7 +40,7 @@ class CompareCard extends Component {
   render() {
     const { activity, loading } = this.state;
 
-    if (false && loading) {
+    if (loading) {
       return (
         <main>
           <Loading message="..." />

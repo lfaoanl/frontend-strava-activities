@@ -10,17 +10,19 @@ class Card extends Component {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
       ]).isRequired,
+      onClick: PropTypes.func,
     };
   }
 
   static get defaultProps() {
     return {
       half: false,
+      onClick: () => false,
     };
   }
 
   render() {
-    const { children, half } = this.props;
+    const { children, half, onClick } = this.props;
     const cardClass = ['card'];
 
     if (half) {
@@ -28,7 +30,7 @@ class Card extends Component {
     }
 
     return (
-      <div className={cardClass.join(' ')}>
+      <div className={cardClass.join(' ')} onClick={onClick}>
         { children }
       </div>
     );

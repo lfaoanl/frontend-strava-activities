@@ -7,12 +7,13 @@ import ActivityCard from './ActivityCard';
 class ActivityList extends Component {
   static get propTypes() {
     return {
-      activities: PropTypes.arrayOf(Activity).isRequired,
+      activities: PropTypes.arrayOf(PropTypes.instanceOf(Activity)).isRequired,
     };
   }
 
   render() {
     const { activities } = this.props;
+
     const cards = [];
 
     forEach(activities, (activity) => {

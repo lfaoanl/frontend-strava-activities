@@ -11,6 +11,7 @@ class StatisticIcon extends Component {
       title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       icon: PropTypes.string,
+      id: PropTypes.number,
     };
   }
 
@@ -21,7 +22,19 @@ class StatisticIcon extends Component {
       title: '',
       subtitle: '',
       icon: 'rabbit',
+      id: 0,
     };
+  }
+
+  constructor(props) {
+    super(props);
+    this.open = this.open.bind(this);
+  }
+
+  open() {
+    const { id } = this.props;
+    console.log(id);
+    window.location.href = `#/activity/${id}`;
   }
 
   render() {
@@ -39,7 +52,7 @@ class StatisticIcon extends Component {
     );
 
     if (card) {
-      return (<Card>{template}</Card>);
+      return (<Card onClick={this.open}>{template}</Card>);
     }
 
     return template;

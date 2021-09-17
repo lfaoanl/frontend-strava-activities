@@ -17,7 +17,14 @@ class RecordCards extends React.Component {
 
     forEach(cardsProp, (card, i) => {
       cards.push(
-        <StatisticIcon card key={i} icon={card.icon} title={card.value} subtitle={card.unit} />,
+        <StatisticIcon
+          card
+          key={i}
+          icon={card.icon}
+          title={card.value}
+          subtitle={card.unit}
+          id={card.id}
+        />,
       );
     });
 

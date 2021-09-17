@@ -58,6 +58,9 @@ class Activity extends Component {
           <Statistic label="speed" value={activity.getSpeed(false)} />
           <Statistic label="pace" value={activity.getSpeed(true)} />
 
+          <Statistic label="max speed" value={activity.getMaxSpeed(false)} />
+          <Statistic label="pace" value={activity.getMaxSpeed(true)} />
+
           <Statistic label="distance" value={activity.getDistance()} />
           <Statistic label="duration" value={activity.duration} />
 

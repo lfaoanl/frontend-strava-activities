@@ -21,7 +21,6 @@ class Activity {
           if (a.type !== 'Run') {
             return;
           }
-          // eslint-disable-next-line max-len
           const activity = Activity.fromFetched(a);
           activities.push(activity);
         });
@@ -60,6 +59,10 @@ class Activity {
 
   getSpeed(usePace = Settings.pace, withSuffix = true) {
     return Convert.pace(this._speed, withSuffix, usePace);
+  }
+
+  getMaxSpeed(usePace = Settings.pace, withSuffix = true) {
+    return Convert.pace(this._maxSpeed, withSuffix, usePace);
   }
 
   get speed() {
