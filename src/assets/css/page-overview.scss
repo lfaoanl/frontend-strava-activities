@@ -1,3 +1,5 @@
+@import "common";
+
 .record-cards {
   display: grid;
   grid-template-columns: calc(50% - 5px) calc(50% - 5px);
@@ -26,6 +28,14 @@
 
 .date-inputs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr 48px;
   column-gap: 10px;
+
+  input {
+    font-size: 0.9em !important;
+  }
+
+  .button {
+    padding: 2px;
+  }
 }

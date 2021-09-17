@@ -41,7 +41,7 @@ class Activity {
   constructor(...props) {
     this.id = props[0];
     this.name = props[1]; // name
-    this._date = props[2]; // start_date
+    this._date = props[2]; // start_date # "2021-09-09T09:48:24Z"
     this._distance = props[3]; // distance # in meters
     this._speed = props[4]; // average_speed # in m/s
     this._maxSpeed = props[5]; // max_speed # in m/s

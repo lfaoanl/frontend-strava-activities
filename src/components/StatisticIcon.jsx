@@ -33,7 +33,6 @@ class StatisticIcon extends Component {
 
   open() {
     const { id } = this.props;
-    console.log(id);
     window.location.href = `#/activity/${id}`;
   }
 
