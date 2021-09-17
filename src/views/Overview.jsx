@@ -1,8 +1,9 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import '../assets/css/page-overview.scss';
 import maxBy from 'lodash/maxBy';
 import forEach from 'lodash/forEach';
+import sortBy from 'lodash/sortBy';
+import reverse from 'lodash/reverse';
 import SelectInput from '../components/inputs/SelectInput';
 import DateInput from '../components/inputs/DateInput';
 import RecordCards from '../components/RecordCards';
@@ -43,6 +44,8 @@ class Overview extends Component {
         },
       ],
     };
+
+    this.selectChanged = this.selectChanged.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +63,14 @@ class Overview extends Component {
     });
   }
 
+  selectChanged(value) {
+    const { activities } = this.state;
+
+    this.setState({
+      activities: reverse(sortBy(activities, [value])),
+    });
+  }
+
   render() {
     const { records, activities } = this.state;
     return (
@@ -71,7 +82,7 @@ class Overview extends Component {
 
         <section className="small">
           <h4>activities</h4>
-          <SelectInput />
+          <SelectInput onChange={this.selectChanged} />
         </section>
 
         <section className="date-inputs">
