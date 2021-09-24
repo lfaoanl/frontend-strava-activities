@@ -33,5 +33,13 @@
       display: grid;
       align-items: center;
     }
+
+    .link {
+      border: none;
+      display: inline;
+      text-align: left;
+      text-decoration: underline;
+      background: none;
+    }
   }
 }
