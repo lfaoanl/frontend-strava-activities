@@ -24,7 +24,7 @@ class Session {
     return true;
   }
 
-  get(prop) {
+  get(prop, defaultForProp = null) {
     if (this.isCached(prop)) {
       return this.cached[prop].item;
     }
@@ -34,7 +34,7 @@ class Session {
       has: item !== null,
       item,
     };
-    return item;
+    return item || defaultForProp;
   }
 
   set(prop, value, updatable = false) {

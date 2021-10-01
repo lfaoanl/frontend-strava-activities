@@ -13,7 +13,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     const athlete = window.$session.get('athlete');
-    const settings = window.$session.get('settings');
+    const settings = window.$session.get('settings', { units: 'metric' });
     this.state = {
       loading: true,
       weightLoading: false,
