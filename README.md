@@ -6,7 +6,7 @@
 |1. |node| v14.17.1
 |2. |npm| 6.14.13
 |3. |git| 2.30.1
-* A basic understanding on JavaScript and working with the console.
+* A basic understanding of JavaScript and working with the console.
 
 ## Installatie
 ### 1. Git clone
