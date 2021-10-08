@@ -54,7 +54,7 @@ class ApiConnection {
       config.data = data;
     }
 
-    const response = await axios(config);
+    const response = await axios.request(config);
 
     this.busy = false;
     return Promise.resolve(response.data);
