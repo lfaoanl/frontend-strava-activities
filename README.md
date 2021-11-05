@@ -1,5 +1,19 @@
 # Installatie handleiding
 
+## Inleiding
+
+
+## Inhoudsopgave
+1. Inleiding
+2. Inhoudsopgave
+3. Vereisten
+4. Installatie
+5. Starten
+6. Starten
+7. Testen
+8. Demo
+9. Uitloggen
+
 ## Vereisten
 |#|Software|Version
 |---|---|---
