@@ -7,15 +7,19 @@ import App from './App';
 import Session from './common/Session';
 import Strava from './common/Strava';
 import reportWebVitals from './reportWebVitals';
+import ColorContext from './common/ColorContext';
 
-window.primaryColor = '#fc4c02';
-window.$strava = new Strava();
-window.$session = new Session();
 window.$app = React.createRef();
+window.$session = new Session();
+window.$strava = new Strava();
+
+const primaryColor = '#fc4c02';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App ref={window.$app} />
+    <ColorContext.Provider value={primaryColor}>
+      <App ref={window.$app} />
+    </ColorContext.Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import Icon from '../components/Icon';
 import Activity from '../common/Activity';
 import CompareCard from '../components/CompareCard';
+import ColorContext from '../common/ColorContext';
 
 class CompareList extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class CompareList extends Component {
       activities: map(this.sessionData, (a) => new Activity(...a)),
     };
 
+    CompareList.contextType = ColorContext;
     this.removeActivity = this.removeActivity.bind(this);
     this.removeAll = this.removeAll.bind(this);
   }
@@ -37,7 +39,7 @@ class CompareList extends Component {
     const { activities } = this.state;
     const emptyCard = (
       <div className="compare-card-empty">
-        <Icon name="plus-circle" size="large" color={window.primaryColor} />
+        <Icon name="plus-circle" size="large" color={this.context} />
         <h4 className="m-0">
           Add up to
           <br />
@@ -61,7 +63,7 @@ class CompareList extends Component {
     return (
       <main>
         <section className="compare-title-container">
-          <Icon name="minus-circle" color={window.primaryColor} right onClick={this.removeAll} />
+          <Icon name="minus-circle" color={this.context} right onClick={this.removeAll} />
           <h2>Compare list</h2>
         </section>
         <section className="compare-lists">

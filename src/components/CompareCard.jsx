@@ -5,11 +5,14 @@ import Statistic from './Statistic';
 import Icon from './Icon';
 import Activity from '../common/Activity';
 import Loading from './Loading';
+import Context from '../common/ColorContext';
 
 class CompareCard extends Component {
   constructor(props) {
     super(props);
     this.remove = this.remove.bind(this);
+
+    CompareCard.contextType = Context;
 
     this.state = {
       activity: props.activity,
@@ -66,7 +69,7 @@ class CompareCard extends Component {
           { !!activity.props.calories && <Statistic label="calories" value={activity.props.calories} /> }
 
           <div className="icon-container" onClick={this.remove}>
-            <Icon name="minus-circle" size="large" color={window.primaryColor} />
+            <Icon name="minus-circle" size="large" color={this.context} />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import '../../assets/css/input.scss';
+import ColorContext from '../../common/ColorContext';
 
 class SelectInput extends Component {
   static get propTypes() {
@@ -13,6 +14,7 @@ class SelectInput extends Component {
   constructor(props) {
     super(props);
 
+    SelectInput.contextType = ColorContext;
     this.onChange = this.onChange.bind(this);
   }
 
@@ -34,7 +36,7 @@ class SelectInput extends Component {
             <option value="_duration">Duration</option>
           </select>
           <span className="right">
-            <Icon name="chevron-down" color={window.primaryColor} />
+            <Icon name="chevron-down" color={this.context} />
           </span>
         </label>
       </div>

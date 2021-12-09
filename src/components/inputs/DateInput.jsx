@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import '../../assets/css/input.scss';
+import ColorContext from '../../common/ColorContext';
 
 class DateInput extends Component {
   static get propTypes() {
@@ -34,6 +35,7 @@ class DateInput extends Component {
   constructor(props) {
     super(props);
 
+    DateInput.contextType = ColorContext;
     this.onChanged = this.onChanged.bind(this);
   }
 
@@ -57,7 +59,7 @@ class DateInput extends Component {
       <div className="input date">
         <label htmlFor="date-input">
           <span className="left">
-            <Icon name="calendar" size="small" color={window.primaryColor} />
+            <Icon name="calendar" size="small" color={this.context} />
           </span>
           <span className="label">Start date</span>
           <input

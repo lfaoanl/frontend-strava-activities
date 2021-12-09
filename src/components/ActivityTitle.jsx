@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import Icon from './Icon';
 import '../assets/css/activity-title.scss';
 import Activity from '../common/Activity';
+import Context from '../common/ColorContext';
 
 class ActivityTitle extends Component {
   static get propTypes() {
@@ -19,6 +20,8 @@ class ActivityTitle extends Component {
 
   constructor(props) {
     super(props);
+
+    ActivityTitle.contextType = Context;
 
     this.addToCompare = this.addToCompare.bind(this);
   }
@@ -50,8 +53,8 @@ class ActivityTitle extends Component {
     const showAddToCompare = !includes(ActivityTitle.compareIds(), activity.id);
     return (
       <div className="activity-title">
-        { showAddToCompare && <Icon name="plus" color={window.primaryColor} size="small" right onClick={this.addToCompare} /> }
-        { !showAddToCompare && <Icon name="scale-balance" color={window.primaryColor} size="small" right /> }
+        { showAddToCompare && <Icon name="plus" color={this.context} size="small" right onClick={this.addToCompare} /> }
+        { !showAddToCompare && <Icon name="scale-balance" color={this.context} size="small" right /> }
         <h2>{activity.name}</h2>
         <time>{activity.date}</time>
         <br />
