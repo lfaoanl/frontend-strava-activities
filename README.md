@@ -43,7 +43,7 @@ Om alle tests in `./tests` uit te voeren.
 
 ## Demo
 
-Om in te loggen met een Demo account ga je naar `http://localhost:300/?demo`. Er verschijnt dan een anchor tag op de login pagina die automatisch voor je inlogd. Let op dat je niet al bent ingelogd.
+Om in te loggen met een Demo account ga je naar `http://localhost:3000/?demo`. Er verschijnt dan een anchor tag op de login pagina die automatisch voor je inlogd. Let op dat je niet al bent ingelogd.
 
 ## Uitloggen
 Om uit te loggen moet je de localStorage leeg gooien. Dit is per browser verschillend maar de makkelijkste manier is `localStorage.clear()` uit te voeren in de JavaScript console. 
