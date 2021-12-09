@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './assets/css/reset.css';
 import './assets/css/icons.css';
 import './assets/css/index.scss';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import Session from './common/Session';
 import Strava from './common/Strava';
@@ -18,7 +19,9 @@ const primaryColor = '#fc4c02';
 ReactDOM.render(
   <React.StrictMode>
     <ColorContext.Provider value={primaryColor}>
-      <App ref={window.$app} />
+      <BrowserRouter>
+        <App ref={window.$app} />
+      </BrowserRouter>
     </ColorContext.Provider>
   </React.StrictMode>,
   document.getElementById('root'),

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
 import Card from './Card';
 import StatisticIcon from './StatisticIcon';
 import ActivityTitle from './ActivityTitle';
@@ -10,6 +11,9 @@ class ActivityCard extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      openCard: false,
+    };
     this.openCard = this.openCard.bind(this);
   }
 
@@ -24,11 +28,12 @@ class ActivityCard extends Component {
    */
   openCard() {
     const { activity } = this.props;
-    window.location.href = `#/activity/${activity.id}`;
+    this.setState({ openCard: activity.id });
   }
 
   render() {
     const { activity } = this.props;
+    const { openCard } = this.state;
     return (
       <Card>
         <div onClick={this.openCard}>
@@ -40,6 +45,7 @@ class ActivityCard extends Component {
             <StatisticIcon centered icon="rabbit" title={activity.maxSpeed} subtitle={Convert.speedText()} />
           </div>
         </div>
+        {openCard && <Navigate to={`/activity/${openCard}`} /> }
       </Card>
     );
   }
