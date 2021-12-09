@@ -47,5 +47,8 @@ Om in te loggen met een Demo account ga je naar [http://localhost:3000/?demo](ht
 Dit is een link naar de standaard login pagina. Er verschijnt dan een anchor tag op de login pagina die automatisch voor je inlogd.  
 Let op dat je niet al bent ingelogd.
 
+### Ontwerp
+Dit is ontworpen als een webapp voor mobiel. Voor de beste ervaring bekijken in 'Responsive Design Mode' via de developer tools, per browser verschillend.
+
 ## Uitloggen
 Om uit te loggen moet je de localStorage leeg gooien. Dit is per browser verschillend maar de makkelijkste manier is `localStorage.clear()` uit te voeren in de JavaScript console. 
