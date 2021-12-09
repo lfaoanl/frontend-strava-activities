@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import '../assets/css/page-activity.scss';
 import ActivityTitle from '../components/ActivityTitle';
 import MapsCard from '../components/MapsCard';
@@ -8,23 +7,18 @@ import GraphCard from '../components/GraphCard';
 import Loading from '../components/Loading';
 
 class Activity extends Component {
-  static get propTypes() {
-    return {
-      id: PropTypes.string.isRequired,
-    };
-  }
-
   constructor(props) {
     super(props);
 
     this.state = {
       loading: true,
       activity: null,
+      id: window.location.pathname.split('/')[2],
     };
   }
 
   componentDidMount() {
-    const { id } = this.props;
+    const { id } = this.state;
     if (id === 'none') {
       return;
     }

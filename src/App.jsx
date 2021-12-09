@@ -1,24 +1,23 @@
 import React from 'react';
 import includes from 'lodash/includes';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
-import ButtonCompare from './components/ButtonCompare';
-import Router from './common/Router';
+import Overview from './views/Overview';
+import Activity from './views/Activity';
+import Profile from './views/Profile';
+import CompareList from './views/CompareList';
+import Login from './views/Login';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleNavigate = this.handleNavigate.bind(this);
-    window.onhashchange = () => Router.handleUrlChange(this.handleNavigate);
-
-    const route = Router.parseRoute();
-    this.state = {
-      route,
-      athlete: null,
-      showButton: App.getMenuVisibility(route.name),
-    };
-
     this.compare = React.createRef();
+
+    this.state = {
+      navigate: false,
+      athlete: window.$session.get('athlete'),
+    };
   }
 
   componentDidMount() {
@@ -26,54 +25,90 @@ class App extends React.Component {
     if (includes(window.location.search, 'code')
       || loginViaRefresh) {
       window.$strava.login(window.$strava.api.auth).then((athlete) => {
-        this.setState({ athlete }, () => {
+        this.setState({ navigate: '/', athlete }, () => {
           window.location.search = '';
-          Router.navigate('overview');
-          // TODO fadeOut login loader and handle urlChange
         });
       });
     }
   }
 
-  handleNavigate(route) {
-    const state = {
-      route,
-      showButton: App.getMenuVisibility(route.name),
-    };
-    this.setState(state);
-  }
-
-  static getMenuVisibility(view) {
+  static getMenuVisibility() {
+    const view = App.getPath();
     return {
-      compare: view !== 'compare' && view !== 'profile' && view !== 'login',
+      compare: view !== 'compare' && view !== 'profile',
       profile: view !== 'profile',
       overview: view !== 'overview',
     };
   }
 
-  get title() {
-    const { route } = this.state;
-    return route.title;
+  static getTitle() {
+    return App.getPath();
+  }
+
+  static getPath() {
+    return window.location.pathname.split('/')[1] || 'overview';
+  }
+
+  requireAuth(nextState, replace, next) {
+    const { athlete } = this.state;
+
+    if (athlete === null) {
+      replace({
+        pathname: '/login',
+      });
+    }
+    next();
   }
 
   render() {
-    const { showButton, route, athlete } = this.state;
+    const { navigate, athlete } = this.state;
+    const OverviewPage = (
+      <Header title="Overview" back={false}>
+        <Overview />
+      </Header>
+    );
 
     return (
       <>
-        { route.name !== 'login' && (
-        <Header
-          athlete={athlete}
-          back={showButton.overview}
-          profile={showButton.profile}
-          title={route.title}
-        />
-        ) }
+        <Routes>
+          { athlete !== null && (
+          <Route path="/">
+            <Route
+              index
+              element={OverviewPage}
+            />
+            <Route path="*" element={OverviewPage} />
+            <Route
+              path="compare"
+              element={(
+                <Header title="Compare" compare={false}>
+                  <CompareList />
+                </Header>
+              )}
+            />
+            <Route
+              path="profile"
+              element={(
+                <Header title="Profile" profile={false}>
+                  <Profile />
+                </Header>
+              )}
+            />
+            <Route
+              path="activity/:id"
+              element={(
+                <Header title="Activity">
+                  <Activity />
+                </Header>
+              )}
+            />
+          </Route>
+          )}
 
-        { Router.getView(route.name) }
-
-        {showButton.compare
-        && <ButtonCompare ref={this.compare} />}
+          {athlete == null
+          && <Route path="*" element={<Login />} />}
+        </Routes>
+        { navigate && <Navigate to={navigate} /> }
       </>
     );
   }

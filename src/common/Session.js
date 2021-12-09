@@ -43,8 +43,8 @@ class Session {
       has: true,
       item: value,
     };
-    if (updatable) {
-      window.$app.current[prop].current.forceUpdate();
+    if (updatable && window.$compare) {
+      window.$compare.current.forceUpdate();
     }
     return value;
   }
