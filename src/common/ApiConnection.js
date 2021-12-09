@@ -54,7 +54,16 @@ class ApiConnection {
       config.data = data;
     }
 
-    const response = await axios.request(config);
+    let response;
+    try {
+      response = await axios.request(config);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Something went wrong!');
+      // eslint-disable-next-line no-console
+      console.error(error);
+      return Promise.reject(error);
+    }
 
     this.busy = false;
     return Promise.resolve(response.data);
